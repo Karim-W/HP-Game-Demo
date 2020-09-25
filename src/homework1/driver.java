@@ -107,19 +107,23 @@ public class driver {
 		while(keepPlaying) {
 		switch(roomNo) {
 		case 0://Entrance
+			while(roomNo==0) {
 			print(entrance.Description);
 			input = getInput();
 			if(input.contains("north")) {
 				print("You have entered the dining hall.");
 				roomNo=1;
+				break;
 			}
 			if(input.contains("west")) {
 				print("You have entered the Library.");
 				roomNo=2;
+				break;
 			}
 			if(input.contains("east")) {
 				print("You have entered the potions class.");
 				roomNo=3;
+				break;
 			}
 			if(input.equals("mischief managed")) {
 				print("Hiding map contents...end.");
@@ -127,6 +131,7 @@ public class driver {
 				break;
 			}else {
 				print("invalid input :/");
+			}
 			}
 			
 			break;
