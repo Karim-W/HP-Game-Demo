@@ -69,10 +69,18 @@ public class driver {
 		Integer potionsMade =0;
 		String[] bookText = {"A Wizard's Guide to Spells\nAccio\nThis charm summons an object to the caster, potentially over a significant distance. Its opposite is the "
 				+ "Banishing Charm\nAge Line\nCreates a thin, shimmering line that can only be passed by people of a set age. Aging potions are useless\n" + 
-				"against age lines. Incantation unknown.\nAguamenti\nProduces a jet of water from the caster’s wand.",""};
+				"against age lines. Incantation unknown.\nAguamenti\nProduces a jet of water from the caster’s wand.","The Babbling Curse\nThis spell is presumed to cause a person to babble whenever they try to speak\n"
+						+ "Banishing Charm\nOpposite to “Accio”. Banishes the object the spell is performed on.\nBadazling Hex\nSimilar to a Disillusionment Charm, it can be used to conceal a person or an object. Is also used to make",
+						"Cheering Charm\nCauses the person upon whom the spell was cast to become happy and contented, though heavyhandedness with the spell may cause the person to break into an uncontrollable laughing fit."
+						+ "\nConfundo\nCauses the victim to become confused, befuddled, overly forgetful and prone to follow simple orders\r\n" + 
+						"without thinking about them.\r\n" + 
+						"Crucio\nInflicts unbearable pain on the recipient of the curse. One of the three Unforgivable Curses.\r\n","Defodio\nCan carve or dig out materials, such as stone and steel.\nDeletrius\nRemoves or dismisses the effect of Prior Incantato\n"
+								+ "Deprino\nA very powerful wind that can loosen and/or soften a variety of things; it can also be used to detach\r\n" + 
+								"objects.\nDesendo\nMakes things sink, or go down.","Engorgio\nCauses objects to swell in size\nEpiskey\nUsed to heal relatively minor injuries. When this spell is cast, the person feels his/her injured body part go\r\n" + 
+										"very hot and then very cold.\nEvanesco\nMakes the target vanish.\nExpelliarmus\nThis spell is used to disarm another wizard, typically by causing the victim’s wand to fly out of reach"};
 		Integer roomNo =-1;
-		String house=":P";
-		Object hat = new Object("Sorting Hat",sortHat());
+		String house=sortHat();
+		Object hat = new Object("Sorting Hat",house);
 		Object foodTray = new Object("Food tray","i can use this to eat food, im hungry");//changed "food" to "foodtray" because use food sounds awkward
 		Object book = new Object("Book","oh A Wizard's Guide to Spells, a great book to read!!");
 		Object quill = new Object("Quill","i can use to write in my book");
@@ -80,9 +88,13 @@ public class driver {
 		Object potion = new Object("Potion","i can test out potions i made");
 		boolean keepPlaying=false;
 		Character ddore = new Character("Dumbledore","Welcome to the dining hall! Interact with the sorting hat to be sorted\r\n" + 
-				"into a house, then enjoy the food served in the hall.\r\n");
+				"into a house, then use a food tray to enjoy the food served in the hall.\r\n");
 		Character herm = new Character("Hermione","I'm so sorry but I'm just so busy I have to prepare for professor McGonagall's class you can sit there to read a book or write or use a quill to write");
-		Character snape = new Character("Professor Snape","make sure to test your Felix Felicis potions they might work and increase your luck making you better students");
+		String snapeLines ="use a cauldron to make your Felix Felicis potions and then use the potions you made.\nthey might work and make you less of an embarssament to";
+		if (house.equals("Slytherin")) {
+			snapeLines= snapeLines +" house Slytherin";}
+		else {snapeLines=snapeLines +" this school for once";}
+		Character snape = new Character("Snape",snapeLines);
 		Scene entrance = new Scene("The Entrance\r\n" + 
 				"You arrive at the doors of Hogwarts. The door on the north wall leads to\r\n" + 
 				"the dining hall, the door to the east leads to the Potions class, and\r\n" + 
@@ -99,11 +111,11 @@ public class driver {
 				"magical Mischief-Makers are proud to present THE MARAUDER'S MAP”\r\n" + 
 				"Say the magic phrase to reveal the map.\r\n" + 
 				"");
-		if (getInput().equals("i solemnly swear that i am up for no good"))
-		{
-			roomNo=0;
-			keepPlaying = true;
+		while(!(getInput().equals("i solemnly swear that i am up for no good"))) {
+			print("wrong password :(");
 		}
+		roomNo=0;
+		keepPlaying = true;
 		while(keepPlaying) {
 		switch(roomNo) {
 		case 0://Entrance
@@ -115,17 +127,17 @@ public class driver {
 				roomNo=1;
 				break;
 			}
-			if(input.contains("west")) {
+			else if(input.contains("west")) {
 				print("You have entered the Library.");
 				roomNo=2;
 				break;
 			}
-			if(input.contains("east")) {
+			else if(input.contains("east")) {
 				print("You have entered the potions class.");
 				roomNo=3;
 				break;
 			}
-			if(input.equals("mischief managed")) {
+			else if(input.equals("mischief managed")) {
 				print("Hiding map contents...end.");
 				keepPlaying=false;
 				break;
@@ -141,12 +153,12 @@ public class driver {
 			if (input.contains("look")) {
 				print(rooms[1].Description);
 			}
-			if(input.contains("talk")) {
+			else if(input.contains("talk")) {
 				if(input.contains(rooms[1].charachter.name.toLowerCase())) {
 					rooms[1].charachter.talk();
 				}else {print("This character is not in the room...try again!");}
 			}
-			if(input.contains("use")) {
+			else if(input.contains("use")) {
 				if(input.contains("hat")) {
 					if (house.equals(":P")) {
 					house = sortHat();
@@ -161,12 +173,12 @@ public class driver {
 				}	
 			}
 			
-			if(input.contains("north")||input.contains("west")||input.contains("east")) {
+			else if(input.contains("north")||input.contains("west")||input.contains("east")) {
 				print("can't go there the room is has one exit to the south");
-			}if (input.contains("south")) {
+			}else if (input.contains("south")) {
 				roomNo =0;
 			}
-			if(input.equals("mischief managed")) {
+			else if(input.equals("mischief managed")) {
 				print("Hiding map contents...end.");
 				keepPlaying=false;
 				break;
@@ -182,34 +194,31 @@ public class driver {
 			if (input.contains("look")) {
 				print(rooms[roomNo].Description);
 			}
-			if(input.contains("talk")) {
+			else if(input.contains("talk")) {
 				if(input.contains(rooms[roomNo].charachter.name.toLowerCase())) {
 					rooms[roomNo].charachter.talk();
 				}else {print("This character is not in the room...try again!");}
 			}
-			if(input.contains("use")) {
+			else if(input.contains("use")) {
 				if(input.contains("book")) {
 					rooms[roomNo].Objects[0].use();
 					String reading ="";
 					Integer page=0;
 					while (reading!="q") {
 						print(bookText[page]);
-						print("\n\n");
-						print("press n to to next page\npress p for previous\npress q to quit");
+						print("\npress n to to next page\npress p for previous\npress q to quit");
 						reading = getInput();
-						switch(reading) {
-						case "n":if((page+1)==bookText.length) {
-							print("end of book, it seems someone stole the spells related to talking to other dimensional beings");
-						}else {page++;}
+						if (reading.equals("n")) {
+							if((page+1)==bookText.length) {
+								print("end of book, it seems someone stole the spells related to talking to other dimensional beings");
+							}else {page++;}
+						}else if (reading.equals("p")) {
+							if(page==0) {
+								print("this is the first page...");
+							}else {page--;}
+						}else if(reading.equals("q")) {
 							break;
-						case "p":if(page==0) {
-							print("this is the first page...");
-						}else {page--;}
-							break;
-						case "q":
-							break;
-							default:print("invalid input :/");
-						}
+						}else {print("invalid input :/");}
 						
 					}
 				}else if(input.contains("quill")) {
@@ -221,12 +230,12 @@ public class driver {
 					print("object does not exist");	
 				}
 			}
-			if(input.contains("north")||input.contains("west")||input.contains("east")) {
+			else if(input.contains("north")||input.contains("west")||input.contains("east")) {
 				print("can't go there the room is has one exit to the south");
-			}if (input.contains("south")) {
+			}else if (input.contains("south")) {
 				roomNo =0;
 			}
-			if(input.equals("mischief managed")) {
+			else if(input.equals("mischief managed")) {
 				print("Hiding map contents...end.");
 				keepPlaying=false;
 				break;
@@ -236,33 +245,41 @@ public class driver {
 			}
 			break;
 		case 3://classroom
-			getInput();
 			while(roomNo==3) {
 				input = getInput();
 				if (input.contains("look")) {
 					print(rooms[roomNo].Description);
 				}
-				if(input.contains("talk")) {
+				else if(input.contains("talk")) {
 					if(input.contains(rooms[roomNo].charachter.name.toLowerCase())) {
 						rooms[roomNo].charachter.talk();
 					}else {print("This character is not in the room...try again!");}
 				}
-				if(input.contains("use")) {
+				else if(input.contains("use")) {
 					if(input.contains("cauldron")) {
 						rooms[roomNo].Objects[0].use();
+						print("\n*potion added to your inventory*");
 						potionsMade++;
 					}else if(input.contains("potion")){
-						if(potionsMade==0) {print("i need to make a potion first");}else {rooms[roomNo].Objects[1].use();potionsMade--;}
+						if(potionsMade==0) {print("i need to make a potion first");}else {
+							rooms[roomNo].Objects[1].use();
+							potionsMade--;
+							if(rand.nextInt(10-0)==0) {//one in 10 chance 
+								print("wow i think it worked!!!!");
+							}else {
+								print("yikes tastes bitter i dont think i made it right");
+							}
+						}
 					}else {
 						print("object does not exist");	
 					}
-				}
+				}else
 				if(input.contains("north")||input.contains("west")||input.contains("east")) {
 					print("can't go there the room is has one exit to the south");
-				}if (input.contains("south")) {
+				}else if (input.contains("south")) {
 					roomNo =0;
 				}
-				if(input.equals("mischief managed")) {
+				else if(input.equals("mischief managed")) {
 					print("Hiding map contents...end.");
 					keepPlaying=false;
 					break;
