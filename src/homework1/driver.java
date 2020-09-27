@@ -72,44 +72,44 @@ public class driver {
 				"against age lines. Incantation unknown.\nAguamenti\nProduces a jet of water from the caster’s wand.","The Babbling Curse\nThis spell is presumed to cause a person to babble whenever they try to speak\n"
 						+ "Banishing Charm\nOpposite to “Accio”. Banishes the object the spell is performed on.\nBadazling Hex\nSimilar to a Disillusionment Charm, it can be used to conceal a person or an object. Is also used to make",
 						"Cheering Charm\nCauses the person upon whom the spell was cast to become happy and contented, though heavyhandedness with the spell may cause the person to break into an uncontrollable laughing fit."
-						+ "\nConfundo\nCauses the victim to become confused, befuddled, overly forgetful and prone to follow simple orders\r\n" + 
-						"without thinking about them.\r\n" + 
-						"Crucio\nInflicts unbearable pain on the recipient of the curse. One of the three Unforgivable Curses.\r\n","Defodio\nCan carve or dig out materials, such as stone and steel.\nDeletrius\nRemoves or dismisses the effect of Prior Incantato\n"
-								+ "Deprino\nA very powerful wind that can loosen and/or soften a variety of things; it can also be used to detach\r\n" + 
-								"objects.\nDesendo\nMakes things sink, or go down.","Engorgio\nCauses objects to swell in size\nEpiskey\nUsed to heal relatively minor injuries. When this spell is cast, the person feels his/her injured body part go\r\n" + 
+						+ "\nConfundo\nCauses the victim to become confused, befuddled, overly forgetful and prone to follow simple orders \n" + 
+						"without thinking about them. \n" + 
+						"Crucio\nInflicts unbearable pain on the recipient of the curse. One of the three Unforgivable Curses. \n","Defodio\nCan carve or dig out materials, such as stone and steel.\nDeletrius\nRemoves or dismisses the effect of Prior Incantato\n"
+								+ "Deprino\nA very powerful wind that can loosen and/or soften a variety of things; it can also be used to detach \n" + 
+								"objects.\nDesendo\nMakes things sink, or go down.","Engorgio\nCauses objects to swell in size\nEpiskey\nUsed to heal relatively minor injuries. When this spell is cast, the person feels his/her injured body part go \n" + 
 										"very hot and then very cold.\nEvanesco\nMakes the target vanish.\nExpelliarmus\nThis spell is used to disarm another wizard, typically by causing the victim’s wand to fly out of reach"};
 		Integer roomNo =-1;
 		String house=sortHat();
 		Object hat = new Object("Sorting Hat",house);
 		Object foodTray = new Object("Food tray","i can use this to eat food, im hungry");//changed "food" to "foodtray" because use food sounds awkward
 		Object book = new Object("Book","oh A Wizard's Guide to Spells, a great book to read!!");
-		Object quill = new Object("Quill","i can use to write in my book");
+		Object quill = new Object("Quill","i can use this to write in my book\nNow what should i say:");
 		Object cauldron = new Object("Cauldron","i can make potions here");
 		Object potion = new Object("Potion","i can test out potions i made");
 		boolean keepPlaying=false;
-		Character ddore = new Character("Dumbledore","Welcome to the dining hall! Interact with the sorting hat to be sorted\r\n" + 
-				"into a house, then use a food tray to enjoy the food served in the hall.\r\n");
+		Character ddore = new Character("Dumbledore","Welcome to the dining hall! Interact with the sorting hat to be sorted \n" + 
+				"into a house, then use a food tray to enjoy the food served in the hall. \n");
 		Character herm = new Character("Hermione","I'm so sorry but I'm just so busy I have to prepare for professor McGonagall's class you can sit there to read a book or write or use a quill to write");
 		String snapeLines ="use a cauldron to make your Felix Felicis potions and then use the potions you made.\nthey might work and make you less of an embarssament to";
 		if (house.equals("Slytherin")) {
 			snapeLines= snapeLines +" house Slytherin";}
 		else {snapeLines=snapeLines +" this school for once";}
 		Character snape = new Character("Snape",snapeLines);
-		Scene entrance = new Scene("The Entrance\r\n" + 
-				"You arrive at the doors of Hogwarts. The door on the north wall leads to\r\n" + 
-				"the dining hall, the door to the east leads to the Potions class, and\r\n" + 
+		Scene entrance = new Scene("The Entrance \n" + 
+				"You arrive at the doors of Hogwarts. The door on the north wall leads to \n" + 
+				"the dining hall, the door to the east leads to the Potions class, and \n" + 
 				"the door to the west leads to the Library.",null,null,null);
 		Scene dHall = new Scene("The dining hall is the biggest open area inside Hogwarts. Professor Dumbledore is in the hall to welcome new students.",ddore,hat,foodTray);
 		Scene Lib = new Scene("The Library\nWhere students spend a lot of their time reading and writing books, Hermione is there there preparing for professor McGonagall's class.",herm,book,quill);
-		Scene classR = new Scene("Potions Classroom\nPotions is one of the core subjects that first year students are required to\r\n" + 
-				"study. In the potions classthere is Professor Snape who teaches the subject. The Potions Classroom\r\n" + 
-				"is full of equipment and material that the player can use including a cauldron to make potions, and\r\n" + 
+		Scene classR = new Scene("Potions Classroom\nPotions is one of the core subjects that first year students are required to \n" + 
+				"study. In the potions class there is Professor Snape who teaches the subject. The Potions Classroom\n" + 
+				"is full of equipment and material that the player can use including a cauldron to make potions, and\n" + 
 				"a potion to drink that casts a magical spell.",snape,cauldron,potion);
 		rooms = new Scene[] {entrance,dHall,Lib,classR};
 		
-		print("“Messrs Moony, Wormtail, Padfoot and Prongs Purveyors of Aids to\r\n" + 
-				"magical Mischief-Makers are proud to present THE MARAUDER'S MAP”\r\n" + 
-				"Say the magic phrase to reveal the map.\r\n" + 
+		print("“Messrs Moony, Wormtail, Padfoot and Prongs Purveyors of Aids to \n" + 
+				"magical Mischief-Makers are proud to present THE MARAUDER'S MAP” \n" + 
+				"Say the magic phrase to reveal the map. \n" + 
 				"");
 		while(!(getInput().equals("i solemnly swear that i am up for no good"))) {
 			print("wrong password :(");
@@ -160,9 +160,6 @@ public class driver {
 			}
 			else if(input.contains("use")) {
 				if(input.contains("hat")) {
-					if (house.equals(":P")) {
-					house = sortHat();
-					}else {System.out.print("you are already in a house, ");}
 					print(house+"!");
 				}else if(input.contains("food tray")) {
 					if(stomach == 1.0) {print("can't eat anymore i'm so full");}else {
